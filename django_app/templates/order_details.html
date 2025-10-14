@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Categories</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans p-5">
+<div class="max-w-6xl mx-auto">
+
+    <div class="flex justify-between items-center mb-6">
+        <h1 class="text-2xl font-bold text-gray-800">📋 All Categories</h1>
+        <a href="{% url 'index' %}" class="bg-gray-600 text-white px-4 py-2 rounded-md no-underline">
+            ← Back
+        </a>
+    </div>
+
+    {% if categories %}
+    <div class="overflow-x-auto bg-white shadow rounded-lg">
+        <table class="w-full border-collapse">
+            <thead>
+            <tr class="bg-blue-600 text-white">
+                <th class="py-3 px-4 text-left font-semibold">ID</th>
+                <th class="py-3 px-4 text-left font-semibold">Category Name</th>
+                <th class="py-3 px-4 text-left font-semibold">Description</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for category in categories %}
+            <tr class="border-b border-gray-200">
+                <td class="py-3 px-4">{{ category.category_id }}</td>
+                <td class="py-3 px-4">{{ category.category_name }}</td>
+                <td class="py-3 px-4">{{ category.description|default:"N/A" }}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <div class="text-center py-10 text-gray-500 text-lg">
+        No categories found.
+    </div>
+    {% endif %}
+
+</div>
+</body>
+</html>
