@@ -28,6 +28,7 @@ class Order ( models.Model ) :
     order_date = models.DateTimeField ( auto_now_add=True )
     required_date = models.DateTimeField ( blank=False, null=False )
     shipped_date = models.DateTimeField ( blank=False, null=False )
+    image = models.ImageField(upload_to='photo/%Y/%m/%d', blank=True, null=True)
 
     def __str__(self) :
         return str ( self.order_id )
@@ -39,6 +40,7 @@ class OrderDetails ( models.Model ) :
     unit_price = models.IntegerField ()
     quantity = models.IntegerField ()
     discount = models.IntegerField ( default=0 )
+    image = models.ImageField(upload_to='photo/%Y/%m/%d', blank=True, null=True)
 
     def __str__(self) :
         return self.product.__str__ ()
